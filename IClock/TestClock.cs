@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace IClock
 {
-    public class TestClock : IClock
+    public class TestClock : ITimeProvider
     {
         private DateTimeOffset _time;
         private TimeSpan _defaultincrement;
@@ -12,7 +12,7 @@ namespace IClock
         public static DateTimeOffset DefaultTime { get; } = new DateTimeOffset(2013, 12, 11, 10, 9, 8, 7, TimeSpan.FromHours(6));
 
         public TestClock(TimeSpan? defaultIncrement = null)
-            : this(DefaultTime) { }
+            : this(DefaultTime, defaultIncrement) { }
 
         public TestClock(DateTimeOffset current, TimeSpan? defaultIncrement = null)
         {

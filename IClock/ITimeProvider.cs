@@ -2,7 +2,7 @@
 
 namespace IClock
 {
-    public interface IClock
+    public interface ITimeProvider
     {
         DateTimeOffset GetTime();
     }

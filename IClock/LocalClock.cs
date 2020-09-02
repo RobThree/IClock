@@ -2,7 +2,7 @@
 
 namespace IClock
 {
-    public class LocalClock : IClock
+    public class LocalClock : ITimeProvider
     {
         public DateTimeOffset GetTime() => DateTimeOffset.Now;
     }

@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IClock", "IClock\IClock.csproj", "{76E771C0-D150-4A4F-9734-33F9E06D17D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IClock.Tests", "IClock.Tests\IClock.Tests.csproj", "{4D016A5A-EF63-4FBF-A661-87E7BF7E0098}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IClock.Tests", "IClock.Tests\IClock.Tests.csproj", "{4D016A5A-EF63-4FBF-A661-87E7BF7E0098}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

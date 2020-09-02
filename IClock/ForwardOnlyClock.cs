@@ -2,13 +2,13 @@
 
 namespace IClock
 {
-    public class ForwardOnlyClock : IClock
+    public class ForwardOnlyClock : ITimeProvider
     {
-        private IClock _internalclock;
+        private readonly ITimeProvider _internalclock;
         private DateTimeOffset _lasttime;
-        private object _lock = new object();
+        private readonly object _lock = new object();
 
-        public ForwardOnlyClock(IClock clock)
+        public ForwardOnlyClock(ITimeProvider clock)
         {
             _internalclock = clock ?? throw new ArgumentNullException(nameof(clock));
             _lasttime = clock.GetTime();
