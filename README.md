@@ -1,2 +1,2 @@
 # IClock
-Provides a testable abstration and alternative to DateTime.Now / DateTime.UtcNow
+Provides a testable abstraction and alternative to DateTime.Now / DateTime.UtcNow. Work in Progess.
