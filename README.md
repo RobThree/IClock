@@ -4,5 +4,7 @@ Provides a testable abstraction and alternative to DateTime.Now / DateTime.UtcNo
 ## License
 
 Licensed under MIT license. See [LICENSE](https://raw.githubusercontent.com/RobThree/IClock/master/LICENSE) for details.
+
 ---
+
 Icon made by [srip](https://www.flaticon.com/authors/srip) from [www.flaticon.com](https://www.flaticon.com/)
