@@ -2,6 +2,8 @@
 
 namespace IClock
 {
+    public interface IScopedTimeProvider : ITimeProvider { }
+
     /// <summary>
     /// Represents a clock that keeps the same time during it's lifetime as if time stands still.
     /// </summary>

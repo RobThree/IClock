@@ -5,7 +5,7 @@ namespace IClock
     /// <summary>
     /// Represents a clock that provides UTC (date)time.
     /// </summary>
-    public class UTCClock : ITimeProvider
+    public class UtcClock : ITimeProvider
     {
         /// <summary>
         /// Returns the current UTC (date)time.
