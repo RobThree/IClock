@@ -149,12 +149,6 @@ public void AnotherTest()
     var time = TestClock.GetDeterministicRandomTime();    // Returns 1976-05-10T11:38:53.3889904+00:00
 }
 ```
-## Work in Progess. To do:
-
-- [X] Readme with instructions, quickstart, examples and unittest examples etc.
-- [X] SHFB welcome page based on Readme
-- [ ] Analyzer (See [here](https://github.com/dennisroche/DateTimeProvider#datetimeprovideranalyser-) and [here](https://github.com/Melchy/Clock#analyzer) for examples) to point out instances where `DateTime.Now`, `DateTime.UtcNow`, `DateTimeOffset.Now` or `DateTimeOffset.UtcNow` are used.
-
 ## License
 
 Licensed under MIT license. See [LICENSE](https://raw.githubusercontent.com/RobThree/IClock/master/LICENSE) for details.
