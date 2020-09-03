@@ -1,6 +1,8 @@
 # <img src="https://raw.githubusercontent.com/RobThree/IClock/master/logo.png" alt="Logo" width="32" height="32"> IClock
 Provides a testable abstraction and alternative to `DateTime.Now` / `DateTime.UtcNow` and `DateTimeOffset.Now` / `DateTimeOffset.UtcNow`. Targets netstandard1.0 and higher.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/cfocayl8qvi3d8cl)](https://ci.appveyor.com/project/RobIII/iclock) <a href="https://www.nuget.org/packages/IClock/"><img src="http://img.shields.io/nuget/v/IClock.svg?style=flat-square" alt="NuGet version" height="18"></a>
+
 ## Why and how
 
 When writing and testing (date)time-related code it is tempting to use any of the `DateTime.Now`, `DateTime.UtcNow`, `DateTimeOffset.Now` or `DateTimeOffset.UtcNow` properties. This, however, causes problems during (unit)testing. It makes your tests dependent on when your tests are run. This means your tests could pass on tuesdays and, without any changes, fail on wednesdays. Or only fail during nighttime or at any other time.
@@ -147,15 +149,11 @@ public void AnotherTest()
     var time = TestClock.GetDeterministicRandomTime();    // Returns 1976-05-10T11:38:53.3889904+00:00
 }
 ```
-
-
 ## Work in Progess. To do:
 
 - [X] Readme with instructions, quickstart, examples and unittest examples etc.
 - [ ] SHFB welcome page based on Readme
 - [ ] Analyzer (See [here](https://github.com/dennisroche/DateTimeProvider#datetimeprovideranalyser-) and [here](https://github.com/Melchy/Clock#analyzer) for examples) to point out instances where `DateTime.Now`, `DateTime.UtcNow`, `DateTimeOffset.Now` or `DateTimeOffset.UtcNow` are used.
-
-[![Build status](https://ci.appveyor.com/api/projects/status/cfocayl8qvi3d8cl)](https://ci.appveyor.com/project/RobIII/iclock) <a href="https://www.nuget.org/packages/IClock/"><img src="http://img.shields.io/nuget/v/IClock.svg?style=flat-square" alt="NuGet version" height="18"></a>
 
 ## License
 
