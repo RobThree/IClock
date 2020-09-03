@@ -55,15 +55,16 @@ namespace IClock.Tests
         }
 
         [TestMethod]
-        public void TestClock_Add_AddsTime()
+        public void TestClock_Adjust_SetsTime()
         {
             var target = new TestClock();
             var timespan = TimeSpan.FromSeconds(Math.PI);
             var t1 = target.GetTime();
-            target.Add(timespan);
+            var r = target.Adjust(timespan);
             var t2 = target.GetTime();
 
             Assert.AreEqual(timespan, t2 - t1);
+            Assert.AreEqual(t1.Add(timespan), r);
         }
 
         private DateTimeOffset GetTime1() => TestClock.GetDeterministicRandomTime();
@@ -74,10 +75,11 @@ namespace IClock.Tests
         {
             // Each invocation within the same method should return the same value
             Assert.AreEqual(TestClock.GetDeterministicRandomTime(), TestClock.GetDeterministicRandomTime());
+            Assert.AreEqual(TestClock.GetDeterministicRandomTime("A"), TestClock.GetDeterministicRandomTime("A"));
 
             // Each invocation from different methods should (likely) return the different values
             Assert.AreNotEqual(GetTime1(), GetTime2());
-            Assert.AreNotEqual(TestClock.GetDeterministicRandomTime(TimeSpan.Zero, "A"), TestClock.GetDeterministicRandomTime(TimeSpan.Zero, "B"));
+            Assert.AreNotEqual(TestClock.GetDeterministicRandomTime("A"), TestClock.GetDeterministicRandomTime("B"));
         }
 
         [TestMethod]

@@ -7,20 +7,31 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IClock", "IClock\IClock.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IClock.Tests", "IClock.Tests\IClock.Tests.csproj", "{4D016A5A-EF63-4FBF-A661-87E7BF7E0098}"
 EndProject
+Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "IClock.Documentation", "IClock.Documentation\IClock.Documentation.shfbproj", "{C0058E99-0103-4E85-900C-A877269572B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		ReleaseWithDocumentation|Any CPU = ReleaseWithDocumentation|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{76E771C0-D150-4A4F-9734-33F9E06D17D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{76E771C0-D150-4A4F-9734-33F9E06D17D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76E771C0-D150-4A4F-9734-33F9E06D17D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76E771C0-D150-4A4F-9734-33F9E06D17D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76E771C0-D150-4A4F-9734-33F9E06D17D9}.ReleaseWithDocumentation|Any CPU.ActiveCfg = ReleaseWithDocumentation|Any CPU
+		{76E771C0-D150-4A4F-9734-33F9E06D17D9}.ReleaseWithDocumentation|Any CPU.Build.0 = ReleaseWithDocumentation|Any CPU
 		{4D016A5A-EF63-4FBF-A661-87E7BF7E0098}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D016A5A-EF63-4FBF-A661-87E7BF7E0098}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D016A5A-EF63-4FBF-A661-87E7BF7E0098}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D016A5A-EF63-4FBF-A661-87E7BF7E0098}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D016A5A-EF63-4FBF-A661-87E7BF7E0098}.ReleaseWithDocumentation|Any CPU.ActiveCfg = ReleaseWithDocumentation|Any CPU
+		{4D016A5A-EF63-4FBF-A661-87E7BF7E0098}.ReleaseWithDocumentation|Any CPU.Build.0 = ReleaseWithDocumentation|Any CPU
+		{C0058E99-0103-4E85-900C-A877269572B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0058E99-0103-4E85-900C-A877269572B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0058E99-0103-4E85-900C-A877269572B5}.ReleaseWithDocumentation|Any CPU.ActiveCfg = ReleaseWithDocumentation|Any CPU
+		{C0058E99-0103-4E85-900C-A877269572B5}.ReleaseWithDocumentation|Any CPU.Build.0 = ReleaseWithDocumentation|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

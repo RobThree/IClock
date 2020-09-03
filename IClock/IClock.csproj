@@ -13,8 +13,17 @@
     <RepositoryType>Git</RepositoryType>
     <PackageReleaseNotes>Initial release</PackageReleaseNotes>
     <Description>Provides a testable abstraction and alternative to DateTime.Now / DateTime.UtcNow</Description>
-    <PackageTags>clock datetime datetimeoffset test unittesting mock dotnet-standard</PackageTags>
-    <Version>1.0.0-alpha</Version>
+    <PackageTags>clock datetime datetimeoffset test unittesting mock dotnet-standard datetimeprovider</PackageTags>
+    <Version>1.0.0</Version>
+    <Configurations>Debug;Release;ReleaseWithDocumentation</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\release\IClock.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDocumentation|AnyCPU'">
+    <DocumentationFile>bin\release\IClock.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
