@@ -8,6 +8,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IClock.Tests", "IClock.Tests\IClock.Tests.csproj", "{4D016A5A-EF63-4FBF-A661-87E7BF7E0098}"
 EndProject
 Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "IClock.Documentation", "IClock.Documentation\IClock.Documentation.shfbproj", "{C0058E99-0103-4E85-900C-A877269572B5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{76E771C0-D150-4A4F-9734-33F9E06D17D9} = {76E771C0-D150-4A4F-9734-33F9E06D17D9}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C08E794B-D2D1-40E3-9DC9-F1BD61F32BE8}"
 	ProjectSection(SolutionItems) = preProject

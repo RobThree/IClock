@@ -2,8 +2,6 @@
 
 namespace IClock
 {
-    public interface IScopedTimeProvider : ITimeProvider { }
-
     /// <summary>
     /// Represents a clock that keeps the same time during it's lifetime as if time stands still.
     /// </summary>
@@ -11,7 +9,7 @@ namespace IClock
     /// This <see cref="ITimeProvider"/> can be used as a clock that doesn't change time during it's lifetime. This
     /// can be handy in situations where you need a single point in time during the handling of a request for example.
     /// </remarks>
-    public class ScopedClock : ITimeProvider, IDisposable
+    public class ScopedClock : IScopedTimeProvider, IDisposable
     {
         private readonly DateTimeOffset _time;
         private bool _disposed;
