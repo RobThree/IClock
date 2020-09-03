@@ -152,7 +152,7 @@ public void AnotherTest()
 ## Work in Progess. To do:
 
 - [X] Readme with instructions, quickstart, examples and unittest examples etc.
-- [ ] SHFB welcome page based on Readme
+- [X] SHFB welcome page based on Readme
 - [ ] Analyzer (See [here](https://github.com/dennisroche/DateTimeProvider#datetimeprovideranalyser-) and [here](https://github.com/Melchy/Clock#analyzer) for examples) to point out instances where `DateTime.Now`, `DateTime.UtcNow`, `DateTimeOffset.Now` or `DateTimeOffset.UtcNow` are used.
 
 ## License
@@ -161,4 +161,4 @@ Licensed under MIT license. See [LICENSE](https://raw.githubusercontent.com/RobT
 
 ## Attribution
 
-Icon made by [srip](https://www.flaticon.com/authors/srip) from [www.flaticon.com](https://www.flaticon.com/free-icon/wall-clock_899064?term=clock&page=1&position=15). Inspired by [dennisroche/DateTimeProvider](https://github.com/dennisroche/DateTimeProvider), [Melchy/Clock](https://github.com/Melchy/Clock) and [rbwestmoreland/system.clock](https://github.com/rbwestmoreland/system.clock) amongst others.
+Icon made by [srip](https://www.flaticon.com/authors/srip) from [www.flaticon.com](https://www.flaticon.com/free-icon/wall-clock_899064). Inspired by [dennisroche/DateTimeProvider](https://github.com/dennisroche/DateTimeProvider), [Melchy/Clock](https://github.com/Melchy/Clock) and [rbwestmoreland/system.clock](https://github.com/rbwestmoreland/system.clock) amongst others.
