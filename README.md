@@ -89,6 +89,28 @@ public void ConfigureServices(IServiceCollection services)
     services.AddScoped<IScopedTimeProvider, ScopedClock>();
     // ...
 }
+
+[ApiController]
+[Route("[controller]")]
+public class MyController : ControllerBase
+{
+    private readonly ILogger<MyController> _logger;
+    private readonly ITimeProvider _timeprovider;
+
+    public MyController(ILogger<MyController> logger, IScopedTimeProvider timeProvider)
+    {
+        _logger = logger;
+        _timeprovider = timeProvider;
+    }
+    
+    [HttpGet]
+    public string Get()
+    {
+        var time = _timeprovider.GetTime();
+        // Do stuff... whenever GetTime() is called again in any class that uses
+        // the same IScopedTimeProvider the same exact (date)time will be returned
+    }
+}
 ```
 
 ## ForwardOnlyClock
