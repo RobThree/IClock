@@ -7,7 +7,19 @@ Provides a testable abstraction and alternative to `DateTime.Now` / `DateTime.Ut
 
 When writing and testing (date)time-related code it is tempting to use any of the `DateTime.Now`, `DateTime.UtcNow`, `DateTimeOffset.Now` or `DateTimeOffset.UtcNow` properties. This, however, causes problems during (unit)testing. It makes your tests dependent on when your tests are run. This means your tests could pass on tuesdays and, without any changes, fail on wednesdays. Or only fail during nighttime or at any other time.
 
-What you want is a clock that you can change at any time without any consequences and without having to change system time. This library provides interfaces and classes to handle just that. The `TestClock` is the clock which you can change freely without consequences to your system.
+Consider how you would test the following code:
+
+```c#
+public string Greet()
+{
+    if (DateTime.Now.Hour < 12)
+        return "Good morning!";
+    else
+        return "Have a great day!";
+}
+```
+
+Using `DateTime.Now.Hour` is problematic here. [What you really want](https://www.youtube.com/watch?v=gJLIiF15wjQ&t=49) is a clock that you can change at any time without any consequences and without having to change system time. This library provides interfaces and classes to handle just that. The `TestClock` is the clock which you can change freely without consequences to your system.
 
 The basis for this library is the `ITimeProvider` interface which defines just one method: `GetTime()`. All "Clock" classes in this library implement this interface. Each of the clocks is described below. For all your code that requires (date)time information, make sure you use the `ITimeProvider` (or `IScopedTimeProvider`, see the `ScopedClock` for more information). Then, you can use one of the clocks (like the `LocalClock` or `UtcClock`) in your code and the `TestClock` in your unittests.
 
