@@ -14,14 +14,13 @@ namespace IClock
         /// </summary>
         /// <param name="getTimeFunction">The function to get the (date)time.</param>
         public CustomClock(Func<DateTimeOffset> getTimeFunction)
-        {
-            _gettimefunc = getTimeFunction ?? throw new ArgumentNullException(nameof(getTimeFunction));
-        }
+            => _gettimefunc = getTimeFunction ?? throw new ArgumentNullException(nameof(getTimeFunction));
 
         /// <summary>
         /// Returns the (date)time from the given function.
         /// </summary>
         /// <returns>Returns the (date)time from the given function.</returns>
-        public DateTimeOffset GetTime() => _gettimefunc();
+        public DateTimeOffset GetTime()
+            => _gettimefunc();
     }
 }

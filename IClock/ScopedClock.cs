@@ -46,15 +46,14 @@ namespace IClock
         /// constructor is called.
         /// </remarks>
         public ScopedClock(DateTimeOffset time)
-        {
-            _time = time;
-        }
+            => _time = time;
 
         /// <summary>
         /// Returns the 'frozen' (date)time.
         /// </summary>
         /// <returns>Returns the 'frozen' (date)time.</returns>
-        public DateTimeOffset GetTime() => _time;
+        public DateTimeOffset GetTime()
+            => _time;
 
         #region IDisposable
         /// <summary>
@@ -64,7 +63,9 @@ namespace IClock
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
+            {
                 _disposed = true;
+            }
         }
 
         /// <summary>

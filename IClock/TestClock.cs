@@ -13,7 +13,7 @@ namespace IClock
     {
         private DateTimeOffset _datetime;
         private TimeSpan _increment;
-        private readonly object _lock = new object();
+        private readonly object _lock = new();
 
         /// <summary>
         /// The default offset for the <see cref="DefaultTime"/>.
@@ -85,7 +85,9 @@ namespace IClock
         public DateTimeOffset Adjust(TimeSpan timeSpan)
         {
             lock (_lock)
+            {
                 return _datetime = _datetime.Add(timeSpan);
+            }
         }
 
         /// <summary>
@@ -98,10 +100,8 @@ namespace IClock
         /// </summary>
         /// <param name="name">The name of the calling method or any string for a repeatable result.</param>
         /// <returns>A deterministic (pseudo)random (date)time based on the CallerMemberName.</returns>
-        public static DateTimeOffset GetDeterministicRandomTime([CallerMemberName] string name = null)
-        {
-            return GetDeterministicRandomTime(TimeSpan.Zero, name);
-        }
+        public static DateTimeOffset GetDeterministicRandomTime([CallerMemberName] string? name = null)
+            => GetDeterministicRandomTime(TimeSpan.Zero, name);
 
         /// <summary>
         /// Returns a deterministic (pseudo)random (date)time based on the CallerMemberName with the given offset.
@@ -109,9 +109,9 @@ namespace IClock
         /// <param name="offset">The offset to be returned for the resulting (date)time.</param>
         /// <param name="name">The name of the calling method or any string for a repeatable result.</param>
         /// <returns>A deterministic (pseudo)random (date)time based on the CallerMemberName with the given offset.</returns>
-        public static DateTimeOffset GetDeterministicRandomTime(TimeSpan offset, [CallerMemberName] string name = null)
+        public static DateTimeOffset GetDeterministicRandomTime(TimeSpan offset, [CallerMemberName] string? name = null)
         {
-            name = name ?? string.Empty;
+            name ??= string.Empty;
             return new DateTimeOffset(DefaultTime.AddSeconds(GetHashCode(name)).AddTicks(GetHashCode(name)).DateTime, offset);
         }
 
@@ -121,7 +121,9 @@ namespace IClock
             unchecked
             {
                 for (var i = 0; i < value.Length; i++)
+                {
                     hashCode *= -1521134295 + value[i];
+                }
             }
             return hashCode;
         }

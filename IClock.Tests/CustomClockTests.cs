@@ -8,7 +8,7 @@ namespace IClock.Tests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void CustomClock_Throws_OnNullArgument() => new CustomClock(null);
+        public void CustomClock_Throws_OnNullArgument() => new CustomClock(null!);
 
         [TestMethod]
         public void CustomClock_GetTime_Returns_CorrectValue1()

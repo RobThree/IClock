@@ -67,8 +67,8 @@ namespace IClock.Tests
             Assert.AreEqual(t1.Add(timespan), r);
         }
 
-        private DateTimeOffset GetTime1() => TestClock.GetDeterministicRandomTime();
-        private DateTimeOffset GetTime2() => TestClock.GetDeterministicRandomTime();
+        private static DateTimeOffset GetTime1() => TestClock.GetDeterministicRandomTime();
+        private static DateTimeOffset GetTime2() => TestClock.GetDeterministicRandomTime();
 
         [TestMethod]
         public void TestClock_GetDeterministicRandomTime_IsDeterministic()

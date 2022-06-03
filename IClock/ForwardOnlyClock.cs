@@ -13,7 +13,7 @@ namespace IClock
     {
         private readonly ITimeProvider _timeprovider;
         private DateTimeOffset _lasttime;
-        private readonly object _lock = new object();
+        private readonly object _lock = new();
 
         /// <summary>
         /// Initializes the <see cref="ForwardOnlyClock"/> with a given <see cref="ITimeProvider"/>
@@ -40,7 +40,10 @@ namespace IClock
             lock (_lock)
             {
                 if (current.CompareTo(_lasttime) > 0)
+                {
                     _lasttime = current;
+                }
+
                 return _lasttime;
             }
         }
