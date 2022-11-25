@@ -5,19 +5,20 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Authors>RobIII</Authors>
 		<Company>Devcorner.nl</Company>
-		<Copyright>Copyright © 2020 Devcorner.nl</Copyright>
+		<Copyright>Copyright © 2020 - 2022 Devcorner.nl</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/RobThree/IClock</PackageProjectUrl>
 		<PackageIcon>logo.png</PackageIcon>
 		<RepositoryUrl>https://github.com/RobThree/IClock</RepositoryUrl>
 		<RepositoryType>Git</RepositoryType>
-		<PackageReleaseNotes>Added IScopedTimeProvider interface. Renamed UTCClock to UtcClock.</PackageReleaseNotes>
 		<Description>Provides a testable abstraction and alternative to DateTime.Now / DateTime.UtcNow</Description>
 		<PackageTags>clock datetime datetimeoffset test unittesting mock dotnet-standard datetimeprovider</PackageTags>
 		<Version>1.0.1</Version>
 		<Configurations>Debug;Release;ReleaseWithDocumentation</Configurations>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<AnalysisLevel>latest</AnalysisLevel>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -34,12 +35,4 @@
 			<PackagePath></PackagePath>
 		</None>
 	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-	</ItemGroup>
-
 </Project>
