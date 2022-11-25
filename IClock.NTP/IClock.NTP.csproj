@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>RobIII</Authors>
+		<Company>Devcorner.nl</Company>
+		<Copyright>Copyright © 2022 Devcorner.nl</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/RobThree/IClock</PackageProjectUrl>
+		<PackageIcon>logo.png</PackageIcon>
+		<RepositoryUrl>https://github.com/RobThree/IClock</RepositoryUrl>
+		<RepositoryType>Git</RepositoryType>
+		<Description>Provides NTP time as an IClock TimeProvider</Description>
+		<PackageTags>clock datetime datetimeoffset test unittesting mock dotnet-standard datetimeprovider ntp</PackageTags>
+		<Version>1.0.0</Version>
+		<Configurations>Debug;Release;ReleaseWithDocumentation</Configurations>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<AnalysisLevel>latest</AnalysisLevel>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="GuerrillaNtp" Version="3.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\IClock\IClock.csproj" />
+	</ItemGroup>
+
+</Project>
