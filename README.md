@@ -1,7 +1,11 @@
-# <img src="https://raw.githubusercontent.com/RobThree/IClock/master/logo.png" alt="Logo" width="32" height="32"> IClock
+﻿# <img src="https://raw.githubusercontent.com/RobThree/IClock/master/logo.png" alt="Logo" width="32" height="32"> IClock
 Provides a testable abstraction and alternative to `DateTime.Now` / `DateTime.UtcNow` and `DateTimeOffset.Now` / `DateTimeOffset.UtcNow`. Targets netstandard1.0 and higher.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/cfocayl8qvi3d8cl)](https://ci.appveyor.com/project/RobIII/iclock) <a href="https://www.nuget.org/packages/IClock/"><img src="http://img.shields.io/nuget/v/IClock.svg?style=flat-square" alt="NuGet version" height="18"></a>
+
+## First: Good news! 🎉
+
+As of the release of .Net 8 (nov. 14th 2023) Microsoft provides the [TimeProvider class](https://learn.microsoft.com/en-us/dotnet/api/system.timeprovider) and [ITimer interface](https://learn.microsoft.com/en-us/dotnet/api/system.threading.itimer). A good primer on this topic is over at [Andrew Lock's site](https://andrewlock.net/exploring-the-dotnet-8-preview-avoiding-flaky-tests-with-timeprovider-and-itimer/) ([archived version](https://archive.is/5bZU7)). You may want to check that out before continuing. What that means for IClock? It'll most likely be the end of this library, but that's a good thing. I'll keep supporting it for a while but switching to the Microsoft provided solution shouldn't be hard.
 
 ## Why and how
 
