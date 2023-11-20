@@ -5,7 +5,7 @@ Provides a testable abstraction and alternative to `DateTime.Now` / `DateTime.Ut
 
 ## First: Good news! 🎉
 
-As of the release of .Net 8 (nov. 14th 2023) Microsoft provides the [TimeProvider class](https://learn.microsoft.com/en-us/dotnet/api/system.timeprovider) and [ITimer interface](https://learn.microsoft.com/en-us/dotnet/api/system.threading.itimer). A good primer on this topic is over at [Andrew Lock's site](https://andrewlock.net/exploring-the-dotnet-8-preview-avoiding-flaky-tests-with-timeprovider-and-itimer/) ([archived version](https://archive.is/5bZU7)). You may want to check that out before continuing. What that means for IClock? It'll most likely be the end of this library, but that's a good thing. I'll keep supporting it for a while but switching to the Microsoft provided solution shouldn't be hard.
+As of the release of .Net 8 (nov. 14th 2023) Microsoft provides the [TimeProvider class](https://learn.microsoft.com/en-us/dotnet/api/system.timeprovider) and [ITimer interface](https://learn.microsoft.com/en-us/dotnet/api/system.threading.itimer). A good primer on this topic is over at [Andrew Lock's site](https://andrewlock.net/exploring-the-dotnet-8-preview-avoiding-flaky-tests-with-timeprovider-and-itimer/) ([archived version](https://archive.is/5bZU7)). You may want to check that out before continuing. What that means for IClock? It'll most likely be the end of this library, but that's a good thing. I'll keep supporting it for a while but switching to the Microsoft provided solution shouldn't be too hard.
 
 ## Why and how
 

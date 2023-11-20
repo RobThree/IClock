@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="cec01ed6-4c1a-44a4-980f-642fc9bf96a0" revisionNumber="1">
+	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<introduction>
+			<para>
+				Version 1.1.0 was released on 2023-11-20.
+			</para>
+		</introduction>
+
+		<section>
+			<title>Changes in This Release</title>
+			<content>
+
+				<list class="bullet">
+					<listItem>
+						<para>
+							Obsoleted the <codeEntityReference>T:ITimer.ITimeProvider</codeEntityReference> interface and, with that, this package. See <externalLink>
+								<linkText>System.TimeProvider</linkText>
+								<linkUri>https://learn.microsoft.com/en-us/dotnet/api/system.timeprovider</linkUri>
+							</externalLink> and <externalLink>
+								<linkText>Andrew Lock's site</linkText>
+								<linkUri>https://andrewlock.net/exploring-the-dotnet-8-preview-avoiding-flaky-tests-with-timeprovider-and-itimer/</linkUri>
+							</externalLink> for more information.
+						</para>
+					</listItem>
+				</list>
+
+			</content>
+		</section>
+
+		<relatedTopics>
+			<link xlink:href="27f7481f-dec9-43a9-bf6c-e60f6641faa3" />
+		</relatedTopics>
+
+	</developerConceptualDocument>
+</topic>

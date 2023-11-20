@@ -2,33 +2,56 @@
 <topic id="053e2869-318c-403f-a110-d3f7db149f07" revisionNumber="1">
 	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
 		<introduction>
-			<para>Provides a testable abstraction and alternative to <codeEntityReference qualifyHint="true">P:System.DateTime.Now</codeEntityReference> / <codeEntityReference qualifyHint="true">P:System.DateTime.UtcNow</codeEntityReference> and <codeEntityReference qualifyHint="true">P:System.DateTimeOffset.Now</codeEntityReference> / <codeEntityReference qualifyHint="true">P:System.DateTimeOffset.UtcNow</codeEntityReference>. Targets netstandard1.0 and higher.</para>
+			<para>
+				Provides a testable abstraction and alternative to <codeEntityReference qualifyHint="true">P:System.DateTime.Now</codeEntityReference> / <codeEntityReference qualifyHint="true">P:System.DateTime.UtcNow</codeEntityReference> and <codeEntityReference qualifyHint="true">P:System.DateTimeOffset.Now</codeEntityReference> / <codeEntityReference qualifyHint="true">P:System.DateTimeOffset.UtcNow</codeEntityReference>. Targets netstandard1.0 and higher.
+			</para>
 		</introduction>
+
+		<section>
+			<title>First: Good news! 🎉</title>
+			<content>
+				<para>
+					As of the release of .Net 8 (nov. 14th 2023) Microsoft provides the <externalLink>
+						<linkText>TimeProvider class</linkText>
+						<linkUri>https://learn.microsoft.com/en-us/dotnet/api/system.timeprovider</linkUri>
+					</externalLink> and <externalLink>
+						<linkText>ITimer interface</linkText>
+						<linkUri>https://learn.microsoft.com/en-us/dotnet/api/system.threading.itimer</linkUri>
+					</externalLink>. A good primer on this topic is over at <externalLink>
+						<linkText>Andrew Lock's site</linkText>
+						<linkUri>https://andrewlock.net/exploring-the-dotnet-8-preview-avoiding-flaky-tests-with-timeprovider-and-itimer/</linkUri>
+					</externalLink> (<externalLink>
+						<linkText>archived version</linkText>
+						<linkUri>https://archive.is/5bZU7</linkUri>
+					</externalLink>). You may want to check that out before continuing. What that means for IClock? It'll most likely be the end of this library, but that's a good thing. I'll keep supporting it for a while but switching to the Microsoft provided solution shouldn't be too hard.
+				</para>
+			</content>
+		</section>
 
 		<section>
 			<title>Why and how</title>
 			<content>
-        <para>
-          When writing and testing (date)time-related code it is tempting to use any of the <codeInline>DateTime.Now</codeInline>, <codeInline>DateTime.UtcNow</codeInline>, <codeInline>DateTimeOffset.Now</codeInline> or <codeInline>DateTimeOffset.UtcNow</codeInline> properties. This, however, causes problems during (unit)testing. It makes your tests dependent on when your tests are run. This means your tests could pass on tuesdays and, without any changes, fail on wednesdays. Or only fail during nighttime or at any other time.
-        </para>
-        <para>
-          What you want is a clock that you can change at any time without any consequences and without having to change system time. This library provides interfaces and classes to handle just that. The <codeEntityReference>T:IClock.TestClock</codeEntityReference> is the clock which you can change freely without consequences to your system.
-        </para>
-        <para>
-          The basis for this library is the <codeEntityReference>T:IClock.ITimeProvider</codeEntityReference> interface which defines just one method: <codeEntityReference>M:IClock.ITimeProvider.GetTime</codeEntityReference>. All &quot;Clock&quot; classes in this library implement this interface. Each of the clocks is described below. For all your code that requires (date)time information, make sure you use the <codeEntityReference>T:IClock.ITimeProvider</codeEntityReference> (or <codeEntityReference>T:IClock.IScopedTimeProvider</codeEntityReference>, see the <codeEntityReference>T:IClock.ScopedClock</codeEntityReference> for more information). Then, you can use one of the clocks (like the <codeEntityReference>T:IClock.LocalClock</codeEntityReference> or <codeEntityReference>T:IClock.UtcClock</codeEntityReference>) in your code and the <codeEntityReference>T:IClock.TestClock</codeEntityReference> in your unittests.
-        </para>
+				<para>
+					When writing and testing (date)time-related code it is tempting to use any of the <codeInline>DateTime.Now</codeInline>, <codeInline>DateTime.UtcNow</codeInline>, <codeInline>DateTimeOffset.Now</codeInline> or <codeInline>DateTimeOffset.UtcNow</codeInline> properties. This, however, causes problems during (unit)testing. It makes your tests dependent on when your tests are run. This means your tests could pass on tuesdays and, without any changes, fail on wednesdays. Or only fail during nighttime or at any other time.
+				</para>
+				<para>
+					What you want is a clock that you can change at any time without any consequences and without having to change system time. This library provides interfaces and classes to handle just that. The <codeEntityReference>T:IClock.TestClock</codeEntityReference> is the clock which you can change freely without consequences to your system.
+				</para>
+				<para>
+					The basis for this library is the <codeEntityReference>T:IClock.ITimeProvider</codeEntityReference> interface which defines just one method: <codeEntityReference>M:IClock.ITimeProvider.GetTime</codeEntityReference>. All &quot;Clock&quot; classes in this library implement this interface. Each of the clocks is described below. For all your code that requires (date)time information, make sure you use the <codeEntityReference>T:IClock.ITimeProvider</codeEntityReference> (or <codeEntityReference>T:IClock.IScopedTimeProvider</codeEntityReference>, see the <codeEntityReference>T:IClock.ScopedClock</codeEntityReference> for more information). Then, you can use one of the clocks (like the <codeEntityReference>T:IClock.LocalClock</codeEntityReference> or <codeEntityReference>T:IClock.UtcClock</codeEntityReference>) in your code and the <codeEntityReference>T:IClock.TestClock</codeEntityReference> in your unittests.
+				</para>
 			</content>
 		</section>
 
 
-    <section>
-      <title>Quickstart</title>
-      <content>
-        <para>
-          In your code:
-        </para>
-        <code language="cs">
-          <![CDATA[
+		<section>
+			<title>Quickstart</title>
+			<content>
+				<para>
+					In your code:
+				</para>
+				<code language="cs">
+					<![CDATA[
 public class MyClass
 {
     private readonly ITimeProvider _timeprovider;
@@ -52,12 +75,12 @@ var myclass = new MyClass(new UtcClock());
 myClass.Foo();
 //...
           ]]>
-        </code>
-        <para>
-          Or, even better, using Dependency Injection:
-        </para>
-        <code language="cs">
-          <![CDATA[
+				</code>
+				<para>
+					Or, even better, using Dependency Injection:
+				</para>
+				<code language="cs">
+					<![CDATA[
 public void ConfigureServices(IServiceCollection services)
 {
     // Register UtcClock as timeprovider
@@ -65,63 +88,63 @@ public void ConfigureServices(IServiceCollection services)
     // ...
 }
           ]]>
-        </code>
-        <para>
-          For usage in unittests, see the <codeEntityReference>T:IClock.TestClock</codeEntityReference> below.
-        </para>
-      </content>
-    </section>
+				</code>
+				<para>
+					For usage in unittests, see the <codeEntityReference>T:IClock.TestClock</codeEntityReference> below.
+				</para>
+			</content>
+		</section>
 
-    <section>
-      <title>DateTimeOffset vs DateTime</title>
-      <content>
-        <para>
-          IClock provides <codeEntityReference>T:System.DateTimeOffset</codeEntityReference> instead of <codeEntityReference>T:System.DateTime</codeEntityReference>. Why? Read this <externalLink>
-            <linkText>excellent answer on StackOverflow</linkText>
-            <linkUri>https://stackoverflow.com/a/14268167/215042</linkUri>
-          </externalLink> (<externalLink>
-            <linkText>archived version</linkText>
-            <linkUri>https://archive.is/6iv8z#answer-14268167</linkUri>
-          </externalLink>).
-        </para>
-        <para>
-          <codeEntityReference>T:System.DateTimeOffset</codeEntityReference> is great, however there are use-cases where you need to use <codeEntityReference>T:System.DateTime</codeEntityReference> as Local or UTC in which case you can use the <codeEntityReference>P:System.DateTimeOffset.LocalDateTime</codeEntityReference> and <codeEntityReference>P:System.DateTimeOffset.UtcDateTime</codeEntityReference> properties.
-        </para>
-      </content>
-    </section>
+		<section>
+			<title>DateTimeOffset vs DateTime</title>
+			<content>
+				<para>
+					IClock provides <codeEntityReference>T:System.DateTimeOffset</codeEntityReference> instead of <codeEntityReference>T:System.DateTime</codeEntityReference>. Why? Read this <externalLink>
+						<linkText>excellent answer on StackOverflow</linkText>
+						<linkUri>https://stackoverflow.com/a/14268167/215042</linkUri>
+					</externalLink> (<externalLink>
+						<linkText>archived version</linkText>
+						<linkUri>https://archive.is/6iv8z#answer-14268167</linkUri>
+					</externalLink>).
+				</para>
+				<para>
+					<codeEntityReference>T:System.DateTimeOffset</codeEntityReference> is great, however there are use-cases where you need to use <codeEntityReference>T:System.DateTime</codeEntityReference> as Local or UTC in which case you can use the <codeEntityReference>P:System.DateTimeOffset.LocalDateTime</codeEntityReference> and <codeEntityReference>P:System.DateTimeOffset.UtcDateTime</codeEntityReference> properties.
+				</para>
+			</content>
+		</section>
 
-    <section>
-      <title>LocalClock and UtcClock</title>
-      <content>
-        <para>
-          These are the simplest <codeEntityReference>T:IClock.ITimeProvider</codeEntityReference>s. They provide, as their name suggests, the system's Local or UTC time.
-        </para>
-        <code language="cs" title="Example">
-          <![CDATA[
+		<section>
+			<title>LocalClock and UtcClock</title>
+			<content>
+				<para>
+					These are the simplest <codeEntityReference>T:IClock.ITimeProvider</codeEntityReference>s. They provide, as their name suggests, the system's Local or UTC time.
+				</para>
+				<code language="cs" title="Example">
+					<![CDATA[
 var utctp = new UtcClock();
 Console.WriteLine(utctp.GetTime());
 
 var localtp = new LocalClock();
 Console.WriteLine(localtp.GetTime());
           ]]>
-        </code>
-      </content>
-    </section>
+				</code>
+			</content>
+		</section>
 
-    <section>
-      <title>ScopedClock</title>
-      <content>
-        <para>
-          This clock takes a 'snapshot' of the time when it is created and 'freezes' time during it's lifetime. This can be handy in cases where you need the same time during, for example, <externalLink>
-            <linkText>handling a request</linkText>
-            <linkUri>https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection#scoped</linkUri>
-          </externalLink> or transaction.
-        </para>
-        <para>
-          The <codeEntityReference>T:IClock.ScopedClock</codeEntityReference> takes either an <codeEntityReference>T:IClock.ITimeProvider</codeEntityReference>, <codeInline>Func&lt;DateTimeOffset&gt;</codeInline> or <codeEntityReference>T:System.DateTimeOffset</codeEntityReference> as constructor argument. The time from the provider, function or literal at the time of the <codeEntityReference>T:IClock.ScopedClock</codeEntityReference>'s construction will be the time the <codeEntityReference>T:IClock.ScopedClock</codeEntityReference> will provide when <codeEntityReference>M:IClock.ITimeProvider.GetTime</codeEntityReference> is called.
-        </para>
-        <code language="cs" title="Example">
-          <![CDATA[
+		<section>
+			<title>ScopedClock</title>
+			<content>
+				<para>
+					This clock takes a 'snapshot' of the time when it is created and 'freezes' time during it's lifetime. This can be handy in cases where you need the same time during, for example, <externalLink>
+						<linkText>handling a request</linkText>
+						<linkUri>https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection#scoped</linkUri>
+					</externalLink> or transaction.
+				</para>
+				<para>
+					The <codeEntityReference>T:IClock.ScopedClock</codeEntityReference> takes either an <codeEntityReference>T:IClock.ITimeProvider</codeEntityReference>, <codeInline>Func&lt;DateTimeOffset&gt;</codeInline> or <codeEntityReference>T:System.DateTimeOffset</codeEntityReference> as constructor argument. The time from the provider, function or literal at the time of the <codeEntityReference>T:IClock.ScopedClock</codeEntityReference>'s construction will be the time the <codeEntityReference>T:IClock.ScopedClock</codeEntityReference> will provide when <codeEntityReference>M:IClock.ITimeProvider.GetTime</codeEntityReference> is called.
+				</para>
+				<code language="cs" title="Example">
+					<![CDATA[
 public void ConfigureServices(IServiceCollection services)
 {
     // Register UtcClock as timeprovider
@@ -153,18 +176,18 @@ public class MyController : ControllerBase
     }
 }
           ]]>
-        </code>
-      </content>
-    </section>
+				</code>
+			</content>
+		</section>
 
-    <section>
-      <title>ForwardOnlyClock</title>
-      <content>
-        <para>
-          This clock is mostly a wrapper. It takes any <codeEntityReference>T:IClock.ITimeProvider</codeEntityReference> and ensures that time always 'moves forward'. This means that, for example, during DST changes time will appear to stand still while the time 'catches up' to the point at which the DST timechange happened. This can be of use for, as the example mentioned, DST changes but also for timesources (or <codeEntityReference>T:IClock.ITimeProvider</codeEntityReference>s) that don't provide linear time.
-        </para>
-        <code language="cs" title="Example">
-          <![CDATA[
+		<section>
+			<title>ForwardOnlyClock</title>
+			<content>
+				<para>
+					This clock is mostly a wrapper. It takes any <codeEntityReference>T:IClock.ITimeProvider</codeEntityReference> and ensures that time always 'moves forward'. This means that, for example, during DST changes time will appear to stand still while the time 'catches up' to the point at which the DST timechange happened. This can be of use for, as the example mentioned, DST changes but also for timesources (or <codeEntityReference>T:IClock.ITimeProvider</codeEntityReference>s) that don't provide linear time.
+				</para>
+				<code language="cs" title="Example">
+					<![CDATA[
 var tc = new TestClock();
 var fc = new ForwardOnlyClock(tc);
 
@@ -172,34 +195,34 @@ Console.WriteLine(fc.GetTime());    // Show time
 tc.Adjust(TimeSpan.FromHours(-1));  // Set clock back 1 hour
 Console.WriteLine(fc.GetTime());    // Show time, should be same as previous
           ]]>
-        </code>
-      </content>
-    </section>
+				</code>
+			</content>
+		</section>
 
-    <section>
-      <title>CustomClock</title>
-      <content>
-        <para>
-          A simple wrapper <codeEntityReference>T:IClock.ITimeProvider</codeEntityReference> that takes a <codeInline>Func&lt;DateTimeOffset&gt;</codeInline> which it will then use whenever <codeEntityReference>M:IClock.ITimeProvider.GetTime</codeEntityReference> is invoked. This can be used in situations where you already have a function that returns time but you need it as an <codeEntityReference>T:IClock.ITimeProvider</codeEntityReference>
-        </para>
-        <code language="cs" title="Example">
-          <![CDATA[
+		<section>
+			<title>CustomClock</title>
+			<content>
+				<para>
+					A simple wrapper <codeEntityReference>T:IClock.ITimeProvider</codeEntityReference> that takes a <codeInline>Func&lt;DateTimeOffset&gt;</codeInline> which it will then use whenever <codeEntityReference>M:IClock.ITimeProvider.GetTime</codeEntityReference> is invoked. This can be used in situations where you already have a function that returns time but you need it as an <codeEntityReference>T:IClock.ITimeProvider</codeEntityReference>
+				</para>
+				<code language="cs" title="Example">
+					<![CDATA[
 // Assume we have a GPS receiver that returns the time from the GPS signal and we need it as an `ITimeSource`.
 var gpsclock = new CustomClock(() => MyGpsReceiver.CurrentTime);
 Console.WriteLine(gpsclock.GetTime());  // Show time
           ]]>
-        </code>
-      </content>
-    </section>
+				</code>
+			</content>
+		</section>
 
-    <section>
-      <title>TestClock</title>
-      <content>
-        <para>
-          This clock is primarily intended for use in unittesting scenarios and is the main reason for the existance of this library. See the 'Why and how' above. It can be initialized to any value (or it's default value of <codeInline>2013-12-11 10:09:08.007+6:00</codeInline>) and will only change when instructed. It has some conveniencemethods like <codeEntityReference>M:IClock.TestClock.Set(System.DateTimeOffset)</codeEntityReference> (set to a specific time), <codeEntityReference>M:IClock.TestClock.Adjust(System.TimeSpan)</codeEntityReference> (add/subtract time) and <codeEntityReference>M:IClock.TestClock.Tick</codeEntityReference> (advance time with a variable increment).
-        </para>
-        <code language="cs" title="Example">
-          <![CDATA[
+		<section>
+			<title>TestClock</title>
+			<content>
+				<para>
+					This clock is primarily intended for use in unittesting scenarios and is the main reason for the existance of this library. See the 'Why and how' above. It can be initialized to any value (or it's default value of <codeInline>2013-12-11 10:09:08.007+6:00</codeInline>) and will only change when instructed. It has some conveniencemethods like <codeEntityReference>M:IClock.TestClock.Set(System.DateTimeOffset)</codeEntityReference> (set to a specific time), <codeEntityReference>M:IClock.TestClock.Adjust(System.TimeSpan)</codeEntityReference> (add/subtract time) and <codeEntityReference>M:IClock.TestClock.Tick</codeEntityReference> (advance time with a variable increment).
+				</para>
+				<code language="cs" title="Example">
+					<![CDATA[
 public void MyTest()
 {
     var tc = new TestClock(new DateTime(1999, 12, 31, 21, 00, 00));
@@ -210,12 +233,12 @@ public void MyTest()
     Assert.IsFalse(target.IsPartyLike1999());
 }
           ]]>
-        </code>
-        <para>
-          The <codeEntityReference>T:IClock.TestClock</codeEntityReference> provides a static method <codeEntityReference>M:IClock.TestClock.GetDeterministicRandomTime(System.String)</codeEntityReference>, with an overload) that returns a (pseudo)random (date)time based on the caller method name (or a user supplied string) so tests that need to be repeatable (but maybe don't require a specific (date)time) can use this method of generating a (pseudo)random (date)time that is consistent over separate runs of the tests.
-        </para>
-        <code language="cs" title="Example">
-          <![CDATA[
+				</code>
+				<para>
+					The <codeEntityReference>T:IClock.TestClock</codeEntityReference> provides a static method <codeEntityReference>M:IClock.TestClock.GetDeterministicRandomTime(System.String)</codeEntityReference>, with an overload) that returns a (pseudo)random (date)time based on the caller method name (or a user supplied string) so tests that need to be repeatable (but maybe don't require a specific (date)time) can use this method of generating a (pseudo)random (date)time that is consistent over separate runs of the tests.
+				</para>
+				<code language="cs" title="Example">
+					<![CDATA[
 [TestMethod]
 public void MyTest()
 {
@@ -228,46 +251,46 @@ public void AnotherTest()
     var time = TestClock.GetDeterministicRandomTime();    // Returns 1976-05-10T11:38:53.3889904+00:00
 }
           ]]>
-        </code>
-      </content>
-    </section>
+				</code>
+			</content>
+		</section>
 
-    <section>
-      <title>License</title>
-      <content>
-        <para>
-          Licensed under MIT license. See <externalLink>
-            <linkText>LICENSE</linkText>
-            <linkUri>https://raw.githubusercontent.com/RobThree/IClock/master/LICENSE</linkUri>
-          </externalLink> for details.
-        </para>
-      </content>
-    </section>
+		<section>
+			<title>License</title>
+			<content>
+				<para>
+					Licensed under MIT license. See <externalLink>
+						<linkText>LICENSE</linkText>
+						<linkUri>https://raw.githubusercontent.com/RobThree/IClock/master/LICENSE</linkUri>
+					</externalLink> for details.
+				</para>
+			</content>
+		</section>
 
-    <section>
-      <title>Attribution</title>
-      <content>
-        <para>
-          Icon made by <externalLink>
-          <linkText>srip</linkText>
-          <linkUri>https://www.flaticon.com/authors/srip</linkUri>
-        </externalLink> from <externalLink>
-          <linkText>www.flaticon.com</linkText>
-          <linkUri>https://www.flaticon.com/free-icon/wall-clock_899064</linkUri>
-        </externalLink>. Inspired by <externalLink>
-          <linkText>dennisroche/DateTimeProvider</linkText>
-          <linkUri>https://github.com/dennisroche/DateTimeProvider</linkUri>
-        </externalLink>, <externalLink>
-          <linkText>Melchy/Clock</linkText>
-          <linkUri>https://github.com/Melchy/Clock</linkUri>
-        </externalLink> and <externalLink>
-          <linkText>rbwestmoreland/system.clock</linkText>
-          <linkUri>https://github.com/rbwestmoreland/system.clock</linkUri>
-        </externalLink> amongst others.
-        </para>
-      </content>
-    </section>
-    
+		<section>
+			<title>Attribution</title>
+			<content>
+				<para>
+					Icon made by <externalLink>
+						<linkText>srip</linkText>
+						<linkUri>https://www.flaticon.com/authors/srip</linkUri>
+					</externalLink> from <externalLink>
+						<linkText>www.flaticon.com</linkText>
+						<linkUri>https://www.flaticon.com/free-icon/wall-clock_899064</linkUri>
+					</externalLink>. Inspired by <externalLink>
+						<linkText>dennisroche/DateTimeProvider</linkText>
+						<linkUri>https://github.com/dennisroche/DateTimeProvider</linkUri>
+					</externalLink>, <externalLink>
+						<linkText>Melchy/Clock</linkText>
+						<linkUri>https://github.com/Melchy/Clock</linkUri>
+					</externalLink> and <externalLink>
+						<linkText>rbwestmoreland/system.clock</linkText>
+						<linkUri>https://github.com/rbwestmoreland/system.clock</linkUri>
+					</externalLink> amongst others.
+				</para>
+			</content>
+		</section>
+
 		<relatedTopics>
 			<link xlink:href="27f7481f-dec9-43a9-bf6c-e60f6641faa3" />
 		</relatedTopics>

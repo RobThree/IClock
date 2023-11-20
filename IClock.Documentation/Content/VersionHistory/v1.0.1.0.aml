@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="3f43303c-eee1-4ffb-b933-a29ccf9ecf0e" revisionNumber="1">
+	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<introduction>
+			<para>
+				Version 1.0.1 was released on 2020-09-20.
+			</para>
+		</introduction>
+
+		<section>
+			<title>Changes in This Release</title>
+			<content>
+
+				<list class="bullet">
+					<listItem>
+						<para>Added <codeEntityReference>T:IClock.IScopedTimeProvider</codeEntityReference>, renamed <codeEntityReference>T:IClock.UtcClock</codeEntityReference>.
+					</para>
+					</listItem>
+
+				</list>
+
+			</content>
+		</section>
+
+		<relatedTopics>
+			<link xlink:href="27f7481f-dec9-43a9-bf6c-e60f6641faa3" />
+		</relatedTopics>
+
+	</developerConceptualDocument>
+</topic>

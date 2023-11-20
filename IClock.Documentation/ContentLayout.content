@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Topics>
-  <Topic id="053e2869-318c-403f-a110-d3f7db149f07" visible="True" isDefault="true" isSelected="true" title="Welcome to the IClock documentation">
+  <Topic id="053e2869-318c-403f-a110-d3f7db149f07" visible="True" isDefault="true" title="Welcome to the IClock documentation">
     <HelpKeywords>
       <HelpKeyword index="K" term="Welcome" />
     </HelpKeywords>
@@ -12,6 +12,16 @@
     <Topic id="12d62add-8eb0-4800-9b7e-4eaef9be52e2" visible="True" title="Version 1.0.0.0">
       <HelpKeywords>
         <HelpKeyword index="K" term="version, 1.0.0.0" />
+      </HelpKeywords>
+    </Topic>
+    <Topic id="3f43303c-eee1-4ffb-b933-a29ccf9ecf0e" visible="True" title="Version 1.0.1.0">
+      <HelpKeywords>
+        <HelpKeyword index="K" term="version, 1.0.1.0" />
+      </HelpKeywords>
+    </Topic>
+    <Topic id="cec01ed6-4c1a-44a4-980f-642fc9bf96a0" visible="True" isSelected="true" title="Version 1.1.0.0">
+      <HelpKeywords>
+        <HelpKeyword index="K" term="version, 1.1.0.0" />
       </HelpKeywords>
     </Topic>
   </Topic>
