@@ -5,16 +5,17 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Authors>RobIII</Authors>
 		<Company>Devcorner.nl</Company>
-		<Copyright>Copyright © 2020 - 2022 Devcorner.nl</Copyright>
+		<Copyright>Copyright © 2020 - 2023 Devcorner.nl</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/RobThree/IClock</PackageProjectUrl>
-		<PackageIcon>logo.png</PackageIcon>
 		<RepositoryUrl>https://github.com/RobThree/IClock</RepositoryUrl>
 		<RepositoryType>Git</RepositoryType>
-		<Description>Provides a testable abstraction and alternative to DateTime.Now / DateTime.UtcNow</Description>
 		<PackageTags>clock datetime datetimeoffset test unittesting mock dotnet-standard datetimeprovider</PackageTags>
 		<Version>1.1.0</Version>
+		<Description>Provides a testable abstraction and alternative to DateTime.Now / DateTime.UtcNow</Description>
+		<PackageIcon>logo.png</PackageIcon>
 		<Configurations>Debug;Release;ReleaseWithDocumentation</Configurations>
+		<Version>1.1.0</Version>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
@@ -32,8 +33,8 @@
 
 	<ItemGroup>
 		<None Include="..\README.md">
-		  <Pack>True</Pack>
-		  <PackagePath>\</PackagePath>
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
 		</None>
 		<None Include="..\logo.png">
 			<Pack>True</Pack>
